@@ -2,8 +2,6 @@
   "name": "auth-api",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/rebecaverasa/Comunicacao_Microsservicos.git",
-  "author": "Rebeca Veras <rebecaverasa@gmail.com>",
   "license": "MIT",
   "type": "module",
   "scripts": {
