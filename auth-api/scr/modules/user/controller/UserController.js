@@ -1,8 +1,8 @@
-import userService from "../service/userService";
+import UserService from "../service/UserService.js";
 
 class UserController {
   async findByEmail(req, res) {
-    let user = await userService.findByEmail(req);
+    let user = await UserService.findByEmail(req);
     return res.status(user.status).json(user);
   }
 }

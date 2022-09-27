@@ -1,13 +1,13 @@
-import userRepository from "../repository/userRepository";
-import * as httpStatus from "../../../config/constants/httpStatus";
-import UserException from "../exception/UserException";
+import UserRepository from "../repository/UserRepository.js";
+import * as httpStatus from "../../../config/constants/httpStatus.js";
+import UserException from "../exception/UserException.js";
 
 class UserService {
   async findByEmail(req) {
     try {
       const { email } = req.params;
       this.validateRequestData(email);
-      let user = await userRepository.findByEmail(email);
+      let user = await UserRepository.findByEmail(email);
       this.validateUserNotFound(user);
       return {
         status: httpStatus.SUCESS,
