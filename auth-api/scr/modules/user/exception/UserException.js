@@ -1,11 +1,10 @@
 class UserException extends Error {
-    constructor(status, message) {
+    constructor(message, status) {
         super(message);
         this.status = status;
-        this.message = message;
         this.name = this.constructor.name;
-        Error.name = this.constructor.name;
-        Error.captureStackTrace(this.this.constructor);
+        this.message = message;
+        Error.captureStackTrace(this.constructor);
     }
 }
 

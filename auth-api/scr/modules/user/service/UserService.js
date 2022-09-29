@@ -2,17 +2,20 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 import UserRepository from "../repository/UserRepository.js";
-import * as httpStatus from "../../../config/constants/httpStatus.js";
 import UserException from "../exception/UserException.js";
+import * as httpStatus from "../../../config/constants/httpStatus.js";
 import * as secrets from "../../../config/constants/secrets.js";
 
 class UserService {
   async findByEmail(req) {
     try {
       const { email } = req.params;
+      const { authUser } = req;
       this.validateRequestData(email);
       let user = await UserRepository.findByEmail(email);
       this.validateUserNotFound(user);
+      this.validateAuthenticatedUser(user, authUser);
+      
       return {
         status: httpStatus.SUCESS,
         user: {
@@ -41,6 +44,15 @@ class UserService {
   validateUserNotFound(user) {
     if (!user) {
       throw new Error(httpStatus.BAD_REQUEST, "User was not found.");
+    }
+  }
+
+  validateAuthenticatedUser(user, authUser) {
+    if (!authUser || user.id !== authUser.id) {
+      throw new UserException(
+        "You cannot see this user data.",
+        httpStatus.FORBIDDEN,
+      );
     }
   }
 
