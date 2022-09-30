@@ -29,8 +29,7 @@ Here, we will simulate a small sales sistem.
 
 ## Used Docker Commands:
 
-Abaixo serão listados alguns dos comandos executados durante o curso para criação dos containers 
-dos bancos de dados PostgreSQL, MongoDB e do message broker RabbitMQ:
+Here are some of the commands executed during the course to create containers with: PostgreSQL, MongoDB and RabbitMQ message broker databases:
 
 #### Container Auth-DB
 
