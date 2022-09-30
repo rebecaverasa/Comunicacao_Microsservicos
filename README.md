@@ -55,4 +55,4 @@ Here are some of the commands executed during the course to create containers wi
 
 `docker-compose up --build`
 
-Para ignorar os logs, adicione a flag `-d`.
+To ignore the logs, add the flag `-d`.
