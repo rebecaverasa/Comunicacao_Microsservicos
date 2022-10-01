@@ -33,7 +33,7 @@ Here are some of the commands executed during the course to create containers wi
 
 #### Container Auth-DB
 
-`docker run --name auth-db -p 5432:5432 -e POSTGRES_DB=auth-db -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=123456 postgres:11`
+`docker run --name auth-db -p 5444:5432 -e POSTGRES_DB=auth-db -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=123456 postgres:11`
 
 #### Container Product-DB
 
