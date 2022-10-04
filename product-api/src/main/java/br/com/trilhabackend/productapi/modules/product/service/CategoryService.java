@@ -14,7 +14,7 @@ import static org.springframework.util.ObjectUtils.isEmpty;
 public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
-    public CategoryResponse save (CategoryRequest request) {
+    public CategoryResponse save(CategoryRequest request) {
         validateCategoryNameInformed(request);
         var category = categoryRepository.save(Category.of(request));
         return CategoryResponse.of(category);
