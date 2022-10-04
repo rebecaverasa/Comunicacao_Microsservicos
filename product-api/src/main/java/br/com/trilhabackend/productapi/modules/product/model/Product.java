@@ -11,7 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "PRODUCT")
-public class product {
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -22,10 +22,12 @@ public class product {
 
     @ManyToOne
     @JoinColumn(name = "FK_SUPPLIER", nullable = false)
-    private supplier supplier;
+    private Supplier supplier;
 
     @ManyToOne
     @JoinColumn(name = "FK_CATEGORY", nullable = false)
-    private category category;
+    private Category category;
 
+    @Column(name = "QUANTITY_AVAILABLE", nullable = false)
+    private Integer quantityAvailable;
 }

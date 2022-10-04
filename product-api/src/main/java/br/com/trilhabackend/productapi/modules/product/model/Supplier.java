@@ -11,7 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "SUPPLIER")
-public class supplier {
+public class Supplier {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

@@ -1,7 +1,7 @@
 package br.com.trilhabackend.productapi.modules.product.repository;
 
-import br.com.trilhabackend.productapi.modules.product.model.Supplier;
+import br.com.trilhabackend.productapi.modules.product.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface SupplierRepository extends JpaRepository <Supplier, Integer> {
+public interface ProductRepository extends JpaRepository <Product, Integer> {
 }
