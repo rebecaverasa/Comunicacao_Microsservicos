@@ -1,7 +1,6 @@
-package br.com.trilhabackend.productapi.modules.product.model;
+package br.com.trilhabackend.productapi.modules.category.model;
 
-import br.com.trilhabackend.productapi.modules.product.dto.CategoryRequest;
-import br.com.trilhabackend.productapi.modules.product.dto.CategoryResponse;
+import br.com.trilhabackend.productapi.modules.category.dto.CategoryRequest;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

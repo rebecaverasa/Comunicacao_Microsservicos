@@ -1,20 +1,42 @@
-package br.com.trilhabackend.productapi.modules.category.dto;
+package br.com.trilhabackend.productapi.modules.product.dto;
 
-import br.com.trilhabackend.productapi.modules.category.model.Category;
+import br.com.trilhabackend.productapi.modules.category.dto.CategoryResponse;
+import br.com.trilhabackend.productapi.modules.product.model.Product;
 import br.com.trilhabackend.productapi.modules.supplier.dto.SupplierResponse;
-import br.com.trilhabackend.productapi.modules.supplier.model.Supplier;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import org.springframework.beans.BeanUtils;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 @Data
-public class CategoryResponse {
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class ProductResponse {
 
     private Integer id;
-    private String description;
+    private String name;
+    @JsonProperty("quantity_available")
+    private Integer quantityAvailable;
+    @JsonProperty("created_at")
+    @JsonFormat(pattern = "dd/MM/yyy HH:mm:ss")
+    private LocalDateTime createdAt;
+    private SupplierResponse supplier;
+    private CategoryResponse category;
 
-    public static SupplierResponse of(Supplier supplier) {
-        var response = new SupplierResponse();
-        BeanUtils.copyProperties(supplier, response);
-        return response;
+    public static ProductResponse of(Product product) {
+        return ProductResponse
+                .builder()
+                .id(product.getId())
+                .name(product.getName())
+                .quantityAvailable(product.getQuantityAvailable())
+                .createdAt(product.getCreatedAt())
+                .supplier(SupplierResponse.of(product.getSupplier()))
+                .category(CategoryResponse.of(product.getCategory()))
+                .build();
     }
 }

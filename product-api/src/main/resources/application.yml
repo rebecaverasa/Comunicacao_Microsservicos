@@ -2,6 +2,11 @@ server:
   port: ${PORT:8081}
 
 spring:
+
+  main:
+    allow-bean-definition-overriding: true
+    allow-circular-references: true
+
   application:
     name: product-api
 
@@ -18,7 +23,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update #before: create-drop
       format_sql: true
     show_sql: true
     properties:

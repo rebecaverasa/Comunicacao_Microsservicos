@@ -1,6 +1,6 @@
-package br.com.trilhabackend.productapi.modules.product.dto;
+package br.com.trilhabackend.productapi.modules.category.dto;
 
-import br.com.trilhabackend.productapi.modules.product.model.Category;
+import br.com.trilhabackend.productapi.modules.category.model.Category;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
 
@@ -12,7 +12,7 @@ public class CategoryResponse {
 
     public static CategoryResponse of(Category category) {
         var response = new CategoryResponse();
-        BeanUtils.copyProperties(category, response);
+        BeanUtils.copyProperties(category,response);
         return response;
     }
 }

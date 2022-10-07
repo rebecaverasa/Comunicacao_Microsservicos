@@ -1,9 +1,14 @@
-package br.com.trilhabackend.productapi.modules.category.dto;
+package br.com.trilhabackend.productapi.modules.product.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
-public class CategoryRequest {
+public class ProductRequest {
 
-    private String description;
+    private String name;
+    @JsonProperty("quantity_available")
+    private Integer quantityAvailable;
+    private Integer supplierId;
+    private Integer categoryId;
 }

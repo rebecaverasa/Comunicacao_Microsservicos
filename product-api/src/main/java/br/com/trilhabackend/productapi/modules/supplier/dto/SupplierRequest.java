@@ -1,9 +1,9 @@
-package br.com.trilhabackend.productapi.modules.category.dto;
+package br.com.trilhabackend.productapi.modules.supplier.dto;
 
 import lombok.Data;
 
 @Data
-public class CategoryRequest {
+public class SupplierRequest {
 
-    private String description;
+    private String name;
 }

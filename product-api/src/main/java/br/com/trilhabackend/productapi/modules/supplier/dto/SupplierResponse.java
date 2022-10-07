@@ -1,18 +1,18 @@
-package br.com.trilhabackend.productapi.modules.category.dto;
+package br.com.trilhabackend.productapi.modules.supplier.dto;
 
-import br.com.trilhabackend.productapi.modules.category.model.Category;
+import br.com.trilhabackend.productapi.modules.supplier.model.Supplier;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
 
 @Data
-public class CategoryResponse {
+public class SupplierResponse {
 
     private Integer id;
-    private String description;
+    private String name;
 
-    public static CategoryResponse of(Category category) {
-        var response = new CategoryResponse();
-        BeanUtils.copyProperties(category, response);
+    public static SupplierResponse of(Supplier supplier) {
+        var response = new SupplierResponse();
+        BeanUtils.copyProperties(supplier, response);
         return response;
     }
 }

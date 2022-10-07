@@ -1,4 +1,4 @@
-package br.com.trilhabackend.productapi.modules.product.dto;
+package br.com.trilhabackend.productapi.modules.category.dto;
 
 import lombok.Data;
 
