@@ -21,6 +21,7 @@ public class CategoryController {
     }
     @GetMapping
     public List<CategoryResponse> findAll() {
+
         return categoryService.findAll();
     }
     @GetMapping("{id}")
