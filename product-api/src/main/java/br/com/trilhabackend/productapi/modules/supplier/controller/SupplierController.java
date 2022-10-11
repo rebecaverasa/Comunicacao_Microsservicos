@@ -1,5 +1,6 @@
 package br.com.trilhabackend.productapi.modules.supplier.controller;
 
+import br.com.trilhabackend.productapi.config.exception.SuccessResponse;
 import br.com.trilhabackend.productapi.modules.supplier.dto.SupplierRequest;
 import br.com.trilhabackend.productapi.modules.supplier.dto.SupplierResponse;
 import br.com.trilhabackend.productapi.modules.supplier.service.SupplierService;
@@ -30,5 +31,14 @@ public class SupplierController {
     @GetMapping("name/{name}")
     public List<SupplierResponse> findByDescription(@PathVariable String name) {
         return supplierService.findByName(name);
+    }
+    @PutMapping("{id}")
+    public SupplierResponse update(@RequestBody SupplierRequest request,
+                                  @PathVariable Integer id) {
+        return supplierService.update(request, id);
+    }
+    @DeleteMapping("{id}")
+    public SuccessResponse delete(@PathVariable Integer id) {
+        return supplierService.delete(id);
     }
 }

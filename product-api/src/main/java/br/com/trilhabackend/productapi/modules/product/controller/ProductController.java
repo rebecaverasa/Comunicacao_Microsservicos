@@ -1,5 +1,7 @@
 package br.com.trilhabackend.productapi.modules.product.controller;
 
+import br.com.trilhabackend.productapi.config.exception.SuccessResponse;
+import br.com.trilhabackend.productapi.modules.category.dto.CategoryRequest;
 import br.com.trilhabackend.productapi.modules.product.dto.ProductRequest;
 import br.com.trilhabackend.productapi.modules.product.dto.ProductResponse;
 import br.com.trilhabackend.productapi.modules.product.service.ProductService;
@@ -7,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static org.springframework.util.ObjectUtils.isEmpty;
 
 @RestController
 @RequestMapping("/api/product")
@@ -37,5 +41,14 @@ public class ProductController {
     @GetMapping("supplier/{supplierId}")
     public List<ProductResponse> findBySupplierId(@PathVariable Integer supplierId) {
         return productService.findBySupplierId(supplierId);
+    }
+    @PutMapping("{id}")
+    public ProductResponse update(@RequestBody ProductRequest request,
+                                  @PathVariable Integer id) {
+        return productService.update(request, id);
+    }
+    @DeleteMapping("{id}")
+    public SuccessResponse delete(@PathVariable Integer id) {
+        return productService.delete(id);
     }
 }

@@ -1,5 +1,6 @@
 package br.com.trilhabackend.productapi.modules.category.service;
 
+import br.com.trilhabackend.productapi.config.exception.SuccessResponse;
 import br.com.trilhabackend.productapi.config.exception.ValidationException;
 import br.com.trilhabackend.productapi.modules.category.dto.CategoryRequest;
 import br.com.trilhabackend.productapi.modules.category.dto.CategoryResponse;
@@ -17,6 +18,8 @@ import static org.springframework.util.ObjectUtils.isEmpty;
 public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
+    @Autowired
+    private ProductService productService;
 
     public CategoryResponse findByIdResponse(Integer id) {
         return CategoryResponse.of(findById(id));
@@ -39,9 +42,7 @@ public class CategoryService {
                 .collect(Collectors.toList());
     }
     public Category findById(Integer id) {
-        if (isEmpty(id)) {
-            throw new ValidationException("The category ID was not informed.");
-        }
+        validateInformedId(id);
         return categoryRepository
                 .findById(id)
                 .orElseThrow(() -> new ValidationException("There's no category for the given ID."));
@@ -51,10 +52,31 @@ public class CategoryService {
         var category = categoryRepository.save(Category.of(request));
         return CategoryResponse.of(category);
     }
-
+    public CategoryResponse update(CategoryRequest request,
+                                 Integer id) {
+        validateCategoryNameInformed(request);
+        var category = Category.of(request);
+        validateInformedId(id);
+        category.setId(id);
+        categoryRepository.save(Category.of(request));
+        return CategoryResponse.of(category);
+    }
     private void validateCategoryNameInformed(CategoryRequest request) {
         if (isEmpty(request.getDescription())) {
             throw new ValidationException("The category description was not informed.");
+        }
+    }
+    public SuccessResponse delete (Integer id) {
+        validateInformedId(id);
+        if (productService.existsByCategoryId(id)) {
+            throw new ValidationException("You cannot delete this category because it's already defined by a product.");
+        }
+        categoryRepository.deleteById(id);
+        return SuccessResponse.create("The category was deleted.");
+    }
+    private void validateInformedId (Integer id) {
+        if (isEmpty(id)) {
+            throw new ValidationException("The category ID must be informed.");
         }
     }
 }
