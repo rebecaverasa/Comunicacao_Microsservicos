@@ -11,7 +11,8 @@ import org.springframework.stereotype.Service;
 import static org.springframework.util.ObjectUtils.isEmpty;
 @Service
 public class JwtService {
-    private static final String BEARER = "bearer";
+    private static final String EMPTY_SPACE = " ";
+    private static final Integer TOKEN_INDEX = 1;
     @Value("${app-config.secrets.api-secret}")
     private String apiSecret;
     public void validateAuthorization(String token) {
@@ -36,9 +37,8 @@ public class JwtService {
         if (isEmpty(token)) {
             throw new AuthenticationException("The access token was not informed.");
         }
-        if (token.toLowerCase().contains(BEARER)); {
-            token = token.toLowerCase();
-            token = token.replace(BEARER, Strings.EMPTY);
+        if (token.contains(EMPTY_SPACE)) {
+            return token.split(EMPTY_SPACE)[TOKEN_INDEX];
         }
         return token;
     }
