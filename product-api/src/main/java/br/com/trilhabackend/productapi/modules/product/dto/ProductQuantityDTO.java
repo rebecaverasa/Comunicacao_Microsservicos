@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductStockDTO {
+public class ProductQuantityDTO {
 
-    private String salesId;
-    private
+    private Integer productId;
+    private Integer quantity;
 }

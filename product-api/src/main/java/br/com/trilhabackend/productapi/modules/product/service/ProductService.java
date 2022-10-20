@@ -5,6 +5,7 @@ import br.com.trilhabackend.productapi.config.exception.ValidationException;
 import br.com.trilhabackend.productapi.modules.category.service.CategoryService;
 import br.com.trilhabackend.productapi.modules.product.dto.ProductRequest;
 import br.com.trilhabackend.productapi.modules.product.dto.ProductResponse;
+import br.com.trilhabackend.productapi.modules.product.dto.ProductStockDTO;
 import br.com.trilhabackend.productapi.modules.product.model.Product;
 import br.com.trilhabackend.productapi.modules.product.repository.ProductRepository;
 import br.com.trilhabackend.productapi.modules.supplier.service.SupplierService;
@@ -124,5 +125,9 @@ public class ProductService {
         if (isEmpty(id)) {
             throw new ValidationException("The supplier ID must be informed.");
         }
+    }
+
+    public void updateProductStock(ProductStockDTO productStockDTO) {
+
     }
 }
