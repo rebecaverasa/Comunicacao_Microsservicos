@@ -3,12 +3,10 @@ package br.com.trilhabackend.productapi.modules.product.service;
 import br.com.trilhabackend.productapi.config.exception.SuccessResponse;
 import br.com.trilhabackend.productapi.config.exception.ValidationException;
 import br.com.trilhabackend.productapi.modules.category.service.CategoryService;
-import br.com.trilhabackend.productapi.modules.product.dto.ProductQuantityDTO;
-import br.com.trilhabackend.productapi.modules.product.dto.ProductRequest;
-import br.com.trilhabackend.productapi.modules.product.dto.ProductResponse;
-import br.com.trilhabackend.productapi.modules.product.dto.ProductStockDTO;
+import br.com.trilhabackend.productapi.modules.product.dto.*;
 import br.com.trilhabackend.productapi.modules.product.model.Product;
 import br.com.trilhabackend.productapi.modules.product.repository.ProductRepository;
+import br.com.trilhabackend.productapi.modules.sales.client.SalesClient;
 import br.com.trilhabackend.productapi.modules.sales.dto.SalesConfirmationDTO;
 import br.com.trilhabackend.productapi.modules.sales.enums.SalesStatus;
 import br.com.trilhabackend.productapi.modules.sales.rabbitmq.SalesConfirmationSender;
@@ -27,6 +25,7 @@ import static org.springframework.util.ObjectUtils.isEmpty;
 @Service
 public class ProductService {
     private static final Integer ZERO = 0;
+
     @Autowired
     private ProductRepository productRepository;
     @Autowired
@@ -35,6 +34,9 @@ public class ProductService {
     private CategoryService categoryService;
     @Autowired
     private SalesConfirmationSender salesConfirmationSender;
+    @Autowired
+    private SalesClient salesClient;
+
     public ProductResponse save(ProductRequest request) {
         validateProductDataInformed(request);
         validateCategoryAndSupplierIdInformed(request);
@@ -189,6 +191,18 @@ public class ProductService {
         if (salesProduct.getQuantity() > existingProduct.getQuantityAvailable()) {
             throw new ValidationException(
                     String.format("The product %s is out of stock.", existingProduct.getId()));
+        }
+    }
+
+    public ProductSalesResponse findProductSales(Integer id) {
+        var product = findById(id);
+        try {
+            var sales = salesClient
+                    .findSalesByProductId(product.getId())
+                    .orElseThrow(() -> new ValidationException("The sales was not found by this product."));
+            return ProductSalesResponse.of(product, sales.getSalesIds());
+        } catch (Exception ex) {
+            throw new ValidationException("There was an error trying to get the product's sales.");
         }
     }
 }
