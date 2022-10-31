@@ -2,9 +2,7 @@ package br.com.trilhabackend.productapi.modules.product.controller;
 
 import br.com.trilhabackend.productapi.config.exception.SuccessResponse;
 import br.com.trilhabackend.productapi.modules.category.dto.CategoryRequest;
-import br.com.trilhabackend.productapi.modules.product.dto.ProductRequest;
-import br.com.trilhabackend.productapi.modules.product.dto.ProductResponse;
-import br.com.trilhabackend.productapi.modules.product.dto.ProductSalesResponse;
+import br.com.trilhabackend.productapi.modules.product.dto.*;
 import br.com.trilhabackend.productapi.modules.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -51,6 +49,11 @@ public class ProductController {
     @DeleteMapping("{id}")
     public SuccessResponse delete(@PathVariable Integer id) {
         return productService.delete(id);
+    }
+
+    @PostMapping("check-stock")
+    public SuccessResponse checkProductsStock(@RequestBody ProductCheckStockRequest request) {
+        return productService.checkProductsStock(request);
     }
 
     @GetMapping("{id}/sales")
