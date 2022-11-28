@@ -11,7 +11,7 @@ import {
 
 import { RABBIT_MQ_URL } from "../constants/secrets.js";
 
-const TWO_SECOND = 2000;
+const FOUR_SECOND = 4000;
 const HALF_MINUTE = 30000;
 const CONTAINER_ENV = "container";
 
@@ -48,11 +48,11 @@ async function connectRabbitMqAndCreateQueues() {
     console.info("Queues and Topic were defined.");
     setTimeout(function () {
       connection.close();
-    }, TWO_SECOND);
+    }, FOUR_SECOND);
   });
   setTimeout(function () {
     listenToSalesConfirmationQueue();
-  }, TWO_SECOND);
+  }, FOUR_SECOND);
 }
 
 function createQueue(connection, queue, routingKey, topic) {
