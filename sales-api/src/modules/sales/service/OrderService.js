@@ -1,4 +1,4 @@
-import OrderRepository from "../repository/OrderRepository";
+import OrderRepository from "../repository/OrderRepository.js";
 import { sendMessageToProductStockUpdateQueue } from "../../product/rabbitmq/productStockUpdateSender.js";
 import { PENDING, ACCEPTED, REJECTED } from "../status/OrderStatus.js";
 import OrderException from "../exception/OrderException.js";
