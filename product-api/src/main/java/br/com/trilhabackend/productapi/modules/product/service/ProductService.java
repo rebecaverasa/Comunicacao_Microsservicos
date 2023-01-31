@@ -210,6 +210,7 @@ public class ProductService {
         if (isEmpty(request) || isEmpty(request.getProducts())) {
             throw new ValidationException("The requested data and products must be informed.");
         }
+        System.out.println(request.getProducts());
         request
                 .getProducts()
                 .forEach(this::validateStock);

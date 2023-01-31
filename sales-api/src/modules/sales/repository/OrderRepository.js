@@ -3,8 +3,11 @@ import Order from "../model/Order.js";
 class OrderRepository {
   async save(order) {
     try {
+      console.log(order);
       return await Order.create(order);
     } catch (error) {
+      console.log("ordsdfisdfhiosdo");
+      console.log(error);
       console.error(error.message);
       return null;
     }

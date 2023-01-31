@@ -46,9 +46,9 @@ services:
     build: './product-api'
     container_name: product-api
     environment:
-      - PORT=8081
+      - PORT=8083
     ports:
-      - 8081:8081
+      - 8083:8083
 
   sales-api:
     build: './sales-api'
