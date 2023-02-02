@@ -15,7 +15,7 @@ class UserService {
       let user = await UserRepository.findByEmail(email);
       this.validateUserNotFound(user);
       this.validateAuthenticatedUser(user, authUser);
-      
+
       return {
         status: httpStatus.SUCESS,
         user: {
@@ -51,13 +51,19 @@ class UserService {
     if (!authUser || user.id !== authUser.id) {
       throw new UserException(
         "You cannot see this user data.",
-        httpStatus.FORBIDDEN,
+        httpStatus.FORBIDDEN
       );
     }
   }
 
   async getAcessToken(req) {
     try {
+      const { transactionid, serviceid } = req.headers;
+      console.info(
+        `Request to POST login with data ${JSON.stringify(
+          req.body
+        )} | [transactionID: ${transactionid} | serviceID: ${serviceid}]`
+      );
       const { email, password } = req.body;
       this.validateAcessTokenData(email, password);
       let user = await UserRepository.findByEmail(email);
@@ -67,10 +73,17 @@ class UserService {
       const accessToken = jwt.sign({ authUser }, secrets.API_SECRET, {
         expiresIn: "1d",
       });
-      return {
+
+      let response = {
         status: httpStatus.SUCESS,
         accessToken,
       };
+      console.info(
+        `Response to POST login with data ${JSON.stringify(
+          response
+        )} | [transactionID: ${transactionid} | serviceID: ${serviceid}]`
+      );
+      return response;
     } catch (err) {
       return {
         status: err.status ? err.status : httpStatus.INTERNAL_SERVER_ERROR,
