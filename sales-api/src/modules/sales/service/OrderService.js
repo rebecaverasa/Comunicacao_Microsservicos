@@ -169,7 +169,7 @@ class OrderService {
       const { productId } = req.params;
       const { transactionid, serviceid } = req.headers;
       console.info(
-        `Response to GET orders by productId ${productId} | [transactionID: ${transactionid} | serviceID: ${serviceid}]`
+        `Request to GET orders by productId ${productId} | [transactionID: ${transactionid} | serviceID: ${serviceid}]`
       );
       this.validateInformedProductId(productId);
       const orders = await OrderRepository.findByProductId(productId);
