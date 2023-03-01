@@ -28,7 +28,7 @@ export async function connectRabbitMq() {
 }
 
 async function connectRabbitMqAndCreateQueues() {
-  amqp.connect(RABBIT_MQ_URL, (error, connection) => {
+  amqp.connect(RABBIT_MQ_URL, { timeout: 180000}, (error, connection) => {
     if (error) {
       throw error;
     }
