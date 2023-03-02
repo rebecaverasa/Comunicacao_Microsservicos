@@ -136,7 +136,7 @@ class OrderService {
     }
   }
 
-  async findAll() {
+  async findAll(req) {
     try {
       const { transactionid, serviceid } = req.headers;
       console.info(
