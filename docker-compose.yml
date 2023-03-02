@@ -22,7 +22,7 @@ services:
       - sales-network
     environment:
       - POSTGRES_DB=auth-db
-      - POSTGRES_USER=admin
+      - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=123456
     ports:
       - 5444:5432
@@ -111,7 +111,7 @@ services:
       - API_SECRET=YXV0aC1hcGktc2VjcmV0LWNvbnRhaW5lci0xMjM0NTY=
       - DB_HOST=auth-db
       - DB_NAME=auth-db
-      - DB_USER=admin
+      - DB_USER=postgres
       - DB_PASSWORD=123456
       - DB_PORT=5432
       - NODE_ENV=container
