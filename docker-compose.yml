@@ -111,7 +111,7 @@ services:
       - API_SECRET=YXV0aC1hcGktc2VjcmV0LWNvbnRhaW5lci0xMjM0NTY=
       - DB_HOST=auth-db
       - DB_NAME=auth-db
-      - DB_USER=postgres
+      - DB_USER=admin
       - DB_PASSWORD=123456
       - DB_PORT=5432
       - NODE_ENV=container
