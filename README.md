@@ -1,6 +1,8 @@
 # Microsservices Communication Project
 
-This project is for the final challenge on the intern's backend trial of Instituto Atlantico.
+This project is based on a course taught by Victor Hugo Negrisoli, for the Udemy platform.
+
+I used this project for studying for the final challenge on the intern's backend trial of Instituto Atlantico.
 Here, we will simulate a small sales sistem.
 
 ## Used Technologies:
