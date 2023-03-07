@@ -5,10 +5,10 @@ Here, we will simulate a small sales sistem.
 
 ## Used Technologies:
 
-* **Java 18**
+* **Java 17**
 * **Spring Boot**
 * **Javascript**
-* **Node.js 16**
+* **Node.js 18**
 * **ES6 Modules**
 * **Express.js**
 * **MongoDB (Container and Cloud MongoDB)**
@@ -20,9 +20,6 @@ Here, we will simulate a small sales sistem.
 * **JWT**
 * **Spring Cloud OpenFeign**
 * **Axios**
-* **Heroku**
-* **Coralogix Logging**
-* **Kibana**
 
 ## Here's the Project's Architecture:
 ![image](https://user-images.githubusercontent.com/68878545/191582963-418b899a-b983-413c-b2ec-e69178f49e68.png)
