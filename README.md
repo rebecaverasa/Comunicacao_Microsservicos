@@ -13,10 +13,10 @@ Here, we will simulate a small sales sistem.
 * **Node.js 18**
 * **ES6 Modules**
 * **Express.js**
-* **MongoDB (Container and Cloud MongoDB)**
+* **MongoDB**
 * **REST API**
-* **PostgreSQL (Container and Heroku Postgres)**
-* **RabbitMQ (Container e CloudAMQP)**
+* **PostgreSQL**
+* **RabbitMQ**
 * **Docker**
 * **docker-compose**
 * **JWT**
